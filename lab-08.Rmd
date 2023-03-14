@@ -1,7 +1,7 @@
 ---
 title: "Lab 08 - University of Edinburgh Art Collection"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Ryan Wheat"
+date: "3/14/2023"
 output: github_document
 ---
 
@@ -10,10 +10,12 @@ output: github_document
 ```{r load-packages, message = FALSE}
 library(tidyverse) 
 library(skimr)
+library(rvest)
 ```
 
 ```{r load-data, message = FALSE, eval = FALSE}
 # Remove eval = FALSE or set it to TRUE once data is ready to be loaded
+
 uoe_art <- read_csv("data/uoe-art.csv")
 ```
 
