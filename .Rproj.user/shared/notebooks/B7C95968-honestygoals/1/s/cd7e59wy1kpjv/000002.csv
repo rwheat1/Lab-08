@@ -1,0 +1,4 @@
+"0",""
+"0","setwd(""C:/Users/12107/OneDrive/Documents/Grad School Stuff/GoalsNSituations/Portfolio2"")"
+"0",""
+"0","goalratings <- read_sav(""TransposedGoals.sav"")"

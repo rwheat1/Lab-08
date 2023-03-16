@@ -3,7 +3,7 @@
     "path": "~/GitHub/Labs 2023/Lab-08/scripts/03-scrape-page-many.R",
     "project_path": "scripts/03-scrape-page-many.R",
     "type": "r_source",
-    "hash": "2892251749",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1678976019810.0,
@@ -16,11 +16,11 @@
         "scrollLine": "8"
     },
     "folds": "",
-    "lastKnownWriteTime": 1678977882,
+    "lastKnownWriteTime": 1679007172,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1678977882833,
+    "last_content_update": 1679007172481,
     "read_only": false,
     "read_only_alternatives": []
 }

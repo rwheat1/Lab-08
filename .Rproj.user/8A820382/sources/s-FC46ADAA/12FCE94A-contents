@@ -1,0 +1,106 @@
+---
+title: "GoalSelection"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(skimr)
+library(psych)
+library(haven)
+```
+
+```{r dataframe}
+
+setwd("C:/Users/12107/OneDrive/Documents/Grad School Stuff/GoalsNSituations/Portfolio2")
+
+goalratings <- read_sav("TransposedGoals.sav")
+```
+
+My thesis (Study 2) intends to investigate whether honesty and dishonesty can achieve the same goals. To do this, we need to identify goals that might be achieved by BOTH honesty and dishonesty to be included in our survey.
+
+To select these goals, 7 experts rated the extent to which 155 goals may be achieved with honesty and dishonesty respectively. The following visualizations stem from these ratings.
+
+## Scatterplot of Goal Ratings
+
+First, lets make a scatterplot that visualizes the average honesty and dishonesty ratings for each goal. Those that are relatively high on both (in the middle 50%) will be identified for Study 2's purposes.
+
+```{r scatterplot}
+#avg. rating for dishonesty x avg. rating for honesty
+
+goalratings <- goalratings %>%
+  mutate(init_S2goals = if_else(Diff_Likelihood >= -1.43 & Diff_Likelihood <= 2.14, "Study 2", "Study 3"))
+
+ggplot(data = goalratings,
+       mapping = aes(x = Avg_DisLikelihood, y = Avg_HonLikelihood, color = init_S2goals)) +
+  geom_point() + scale_color_manual(values = c("darkblue", "deepskyblue1")) + theme_bw() +
+  labs(title = "Scatterplot of Goal Ratings", x = "Dishonesty Likelihood", y = "Honesty Likelihood", color = "Goals")
+
+ggsave("initial_goals_scatterplot.png", plot = last_plot(), device = "png")
+```
+
+Let's try doing this another way, too.
+
+```{r geom-hex}
+
+ggplot(data = goalratings, mapping = aes(x = Diff_Likelihood, fill = init_S2goals)) +  geom_histogram(color = "black") +  scale_fill_manual(values = c("darkblue", "deepskyblue1")) + theme_bw() + labs(title = "Histogram of Goal Ratings", x = "Difference Score (Honesty Likelihood - Dishonesty Likelihood", y = "Frequency", fill = "Goals")
+
+```
+
+
+## Filtering Goals That Pull In Both Directions
+
+
+```{r filtering}
+goalratings %>%
+  arrange(desc(Diff_Likelihood))
+
+goalratings %>%
+  arrange(desc(Avg_DisLikelihood))
+
+#filter the middle 50% of goals based on difference scores. This will reveal the 50% of goals that, on average, are rated to be similarly likely to be achieved by honesty and dishonesty.
+
+#among those middle 50%, filter for those with above 2.8 and 3 avg. honesty/dishonesty likelihood ratings.
+
+goalratings <- goalratings %>%
+  filter(Diff_Likelihood <= 2.14) %>%
+  filter(Diff_Likelihood >= -1.43) %>%
+  filter(Avg_HonLikelihood > 2.8) %>%
+  filter(Avg_DisLikelihood > 3)
+
+goalratings %>%
+  arrange(Diff_Likelihood)
+```
+
+## Visualize After Filtering
+
+Now that I've filtered out some of the goals we don't want, what goals remain? Let's make a plot to find out.
+
+This seems consistent with the types of goals we want to select for this study.
+
+```{r visualize-after-filtering}
+
+#scatterplot to see which goals remain from our previous graph
+
+ggplot(data = goalratings,
+       mapping = aes(x = Avg_DisLikelihood, y = Avg_HonLikelihood)) +
+  geom_point(color = "darkblue") + scale_x_continuous(limits = c(0, 5)) + scale_y_continuous(limits = c(0, 5)) + theme_bw() +
+  labs(title = "Scatterplot of Filtered Goal Ratings", x = "Dishonesty Likelihood", y = "Honesty Likelihood")
+```
+
+Now, lets make a plot to reveal the relative difference scores for these goals. 
+
+This visual seems to show that, interestingly, the goals that our experts judged to be likely to be achieved by both honesty and dishonesty seem to generally pull more strongly for dishonesty than honesty.
+
+```{r plot-diff-scores}
+
+ggplot(data = goalratings, mapping = aes(x = Diff_Likelihood, y = CASE_LBL)) + geom_bar(color = "deepskyblue", fill = "darkblue", stat = "identity") + theme_bw() + labs(x = "Difference Score (Honesty Likelihood - Dishonesty Likelihood)", y = "Goal")
+
+```
+
+
+```{r }
+
+
+```
+
