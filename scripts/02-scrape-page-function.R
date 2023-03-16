@@ -1,27 +1,12 @@
-# load packages ----------------------------------------------------------------
+add_two <- function(x){
+  x + 2
+}
 
-library(tidyverse)
-library(rvest)
+add_two(3)
+add_two(10)
 
-# function: scrape_page --------------------------------------------------------
+#scrape page function
 
-___ <- function(url){
-  
-  # read page
-  page <- read_html(url)
-  
-  # scrape titles
-  titles <- ___
-  
-  # scrape links
-  links <- ___
-  
-  # scrape artists 
-  artists <- ___
-  
-  # create and return tibble
-  tibble(
-    ___
-  )
+scrape_page <- function(url) {
   
 }
