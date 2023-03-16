@@ -1,0 +1,26 @@
+{
+    "id": "3B50AE22",
+    "path": "~/GitHub/Labs 2023/Lab-08/scripts/01-scrape-page-one.R",
+    "project_path": "scripts/01-scrape-page-one.R",
+    "type": "r_source",
+    "hash": "1708995141",
+    "contents": "",
+    "dirty": false,
+    "created": 1678974483872.0,
+    "source_on_save": true,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "66,0",
+        "scrollLine": "57"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1678975840,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1678975840593,
+    "read_only": false,
+    "read_only_alternatives": []
+}
