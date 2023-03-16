@@ -21,11 +21,13 @@ uoe_art <- read_csv("data/uoe-art.csv")
 
 ### Exercise 9
 
+I got some warnings when running this code because we're computing a new variable for year *IF we have that information available. However, for some artwork, we don't have any that information -- so this error reflects those cases. Thus, I'm not worried about it.
+
 ```{r separate-title-date, error = TRUE}
 uoe_art <- uoe_art %>%
   separate(title, into = c("title", "date"), sep = "\\(") %>%
   mutate(year = str_remove(date, "\\)") %>% as.numeric()) %>%
-  select(title, artist, year, ___)
+  select(title, artist, year, link)
 ```
 
 ### Exercise 10
